@@ -1,0 +1,14 @@
+name: Smoke
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  open-solution:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: List repo and solution
+        run: |
+          Get-ChildItem -Recurse -File *.sln, *.csproj | ForEach-Object { $_.FullName }
